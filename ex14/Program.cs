@@ -34,18 +34,6 @@ class Vetores
                 vFinal[iFinal++] = v2[i2++]; // da mesma forma, mas no caso com o numero do segundo menor que o numero do primeiro
             }
         }
-
-    
-        while (i1 < 50) // caso sobre algum numero, sera preenchido
-        {
-            vFinal[iFinal++] = v1[i1++];
-        }
-
-        while (i2 < 50)
-        {
-            vFinal[iFinal++] = v2[i2++];
-        }
-
         
         Console.WriteLine("Vetor Final Ordenado:\n"); // mostra o resultado 
         MostrarVetor(vFinal);
