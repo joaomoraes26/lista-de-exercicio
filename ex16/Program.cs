@@ -1,57 +1,39 @@
 using System;
 
-class DecimalParaRomano
+class ConversorTempo
 {
     static void Main()
     {
-        int numero = LerNumero(); // pega o numero digitado
+        int totalSegundos = LerSegundos();
 
-        int centena = ObterCentena(numero); //
-        int dezena = ObterDezena(numero);
-        int unidade = ObterUnidade(numero);
+        int horas = CalcularHoras(totalSegundos);
+        int minutos = CalcularMinutos(totalSegundos);
+        int segundos = CalcularSegundosRestantes(totalSegundos);
 
-        string romano = ConverterRomano(centena, dezena, unidade);
-
-        Console.WriteLine($"\nNúmero em romano: {romano}");
+        EscreverResultado(horas, minutos, segundos);
     }
 
-    // função para ler o número escrito
-    static int LerNumero()
+        static int LerSegundos() 
     {
-        Console.Write("Digite um número entre 0 e 999: ");
+        Console.Write("Digite o tempo em segundos: ");
         return int.Parse(Console.ReadLine()!);
     }
 
-    // pega qual a centena do numero escrito pelo usuario
-    static int ObterCentena(int numero)
+    static int CalcularHoras(int totalSegundos) // método que calcula as horas 
     {
-        return numero / 100;
+        return totalSegundos / 3600;
     }
-
-    // pega a dezena escrita pelo usuario 
-    static int ObterDezena(int numero)
+ 
+    static int CalcularMinutos(int totalSegundos)  // método que calcula os minutos
     {
-        return (numero % 100) / 10;
+        return (totalSegundos % 3600) / 60;
     }
-
-    // pega a unidade escrita pelo usuário
-    static int ObterUnidade(int numero)
+    static int CalcularSegundosRestantes(int totalSegundos) // método que calcula os segundos 
     {
-        return numero % 10;
+        return totalSegundos % 60;
     }
-
-    // função que converte para o numero romano
-    static string ConverterRomano(int centena, int dezena, int unidade)
+    static void EscreverResultado(int horas, int minutos, int segundos) // método que escreve o resultado
     {
-        string[] romanosCentena =
-        { "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" }; // vetor da centena em romano 
-
-        string[] romanosDezena =
-        { "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" }; // vetor da dezena em romano 
-
-        string[] romanosUnidade =
-        { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" }; // vetor da unidade me romano
-
-        return romanosCentena[centena] + romanosDezena[dezena] + romanosUnidade[unidade]; // retorna o numero escrito
+        Console.WriteLine($"\n{horas} hora(s), {minutos} minuto(s) e {segundos} segundo(s).");
     }
 }
